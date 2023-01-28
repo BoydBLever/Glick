@@ -1,0 +1,13 @@
+Back: 
+npm init -y (for server.js file)
+npm i express mongoose socket.io cors bcrypt
+
+Front:
+(React App)
+    MUI:
+    npm install @mui/joy @emotion/react @emotion/styled
+    npm install @fontsource/public-sans
+npm i axios react-router-dom dotenv cookie-parser
+
+All:
+npm i jsonwebtoken
