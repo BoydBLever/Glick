@@ -5,7 +5,7 @@ npm i express mongoose socket.io cors bcrypt
 Front:
 (React App)
     MUI:
-    npm install @mui/joy @emotion/react @emotion/styled
+    npm install @mui/joy @emotion/react @emotion/styled @material/card
     npm install @fontsource/public-sans
 npm i axios react-router-dom dotenv cookie-parser
 

@@ -11,7 +11,9 @@ import { Box } from '@mui/system';
 const logo = require('./uplick.png');
 
 const buttonSX = {
-    mt: '1',
+    mt: '12px',
+    width: '40%',
+    mx: 'auto',
     bgcolor: '#f92f60',
     "&:hover": {
         bgcolor: '#CA0B4A'
