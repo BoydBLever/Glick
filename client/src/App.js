@@ -19,8 +19,7 @@ export default function App() {
       <Route path='/profile'/>
       <Route path='/messages'/>
       <Route path='/licks'/>
-
-
+      
       {/* REDIRECT */}
       <Route path="*" element={<Navigate to="/login" />}/>
       </Routes>
