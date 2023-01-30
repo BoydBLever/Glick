@@ -4,8 +4,7 @@ import * as React from 'react';
 import ResponsiveAppBar from './components/ResponsiveAppBar';
 import Login from './components/Login';
 import Register from './components/Register';
-import PostCard from './components/PostCard'
-import { CssVarsProvider } from '@mui/joy/styles';
+import Landing from './components/Landing';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
 export default function App() {
@@ -15,7 +14,7 @@ export default function App() {
       <Routes>
       <Route element={<Login />} path="/login" />
       <Route element={<Register />} path="/register" />
-      <Route element={<PostCard />} path='/landing'/>
+      <Route element={<Landing />} path='/landing'/>
       <Route path='/groupies'/>
       <Route path='/profile'/>
       <Route path='/messages'/>

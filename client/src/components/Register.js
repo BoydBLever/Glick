@@ -1,5 +1,5 @@
 import Sheet from '@mui/joy/Sheet';
-import Typography from '@mui/joy/Typography';
+import Typography from '@mui/material/Typography';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import Input from '@mui/joy/Input';
@@ -7,6 +7,7 @@ import Button from '@mui/joy/Button';
 import { Box } from '@mui/system';
 // import Link from '@mui/joy/Link';
 // import { bgcolor, color } from '@mui/system';
+// import Box from '@mui/joy/Box';
 
 const logo = require('./uplick.png');
 
@@ -15,6 +16,7 @@ const buttonSX = {
     width: '40%',
     mx: 'auto',
     bgcolor: '#f92f60',
+    color: 'white',
     "&:hover": {
         bgcolor: '#CA0B4A'
     }
@@ -53,7 +55,7 @@ const Register = () => {
                     alt="Uplick Logo"
                     src={logo}
                 />
-                <Typography sx={{ color: '#CA0B4A' }} level="h4">Sign Up</Typography>
+                <Typography sx={{ color: '#CA0B4A' }} variant='h3'>Cook Up An Account</Typography>
             </Box>
 
             <Box sx={{

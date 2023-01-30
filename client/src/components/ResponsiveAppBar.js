@@ -9,19 +9,19 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import { styled, alpha } from '@mui/material/styles';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
 import InputBase from '@mui/material/InputBase';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
 import SearchIcon from '@mui/icons-material/Search';
 import { useNavigate } from 'react-router-dom';
+// import AdbIcon from '@mui/icons-material/Adb';
+// import Tooltip from '@mui/material/Tooltip';
 
 const pages = ['profile', 'messages', 'groupies', 'licks'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+// const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  // const [anchorElUser, setAnchorElUser] = React.useState(null);
   const navigate = useNavigate();
 
 const Search = styled('div')(({ theme }) => ({
