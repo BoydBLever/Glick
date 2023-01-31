@@ -20,9 +20,11 @@ const Enlarge = () => {
     return (
         <Box sx={{
             border: 1,
+            borderRadius: '10px',
             mx: 'auto',
             my: '15px',
-            borderColor: 'red',
+            bgcolor: '#E1D5E7',
+            borderColor: '#F92F60',
             width: '90%'
         }}>
             <Box sx={{

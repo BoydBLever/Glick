@@ -1,12 +1,13 @@
 const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
 
+
 const UserSchema = new mongoose.Schema({
-    firstName: {
+    name: {
       type: String,
       required: [true, "First name is required"]
     },
-    lastName: {
+    userName: {
       type: String,
       required: [true, "Last name is required"]
     },
@@ -21,7 +22,10 @@ const UserSchema = new mongoose.Schema({
       type: String,
       required: [true, "Password is required"],
       minlength: [8, "Password must be 8 characters or longer"]
-    }
+    },
+    posts: {
+      type: [],
+    },
   }, {timestamps: true});
   
   UserSchema.virtual('confirmPassword')

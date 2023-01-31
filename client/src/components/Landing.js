@@ -1,26 +1,75 @@
+import { useState } from 'react';
 import PostCard from "./PostCard";
 import Enlarge from "./Enlarge";
-import { Box } from "@mui/system";
+import Box from "@mui/material/Box";
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import React from "react";
+import { Typography } from '@mui/material';
 // import Divider from '@mui/joy/Divider';
 
+
 const Landing = () => {
+    const [sort, setSort] = useState('recent');
+
+    const handleChange = (event) => {
+        setSort(event.target.value);
+    };
+
     return (
         // Everything box
         <Box sx={{
             display: 'flex',
             alignItems: 'center'
         }}>
-            {/* PINK BOX OUTER */}
-            <Box>
-                
+            {/* OUTER BOX LEFT */}
+            <Box sx={{
+                width: '60%',
+                mx: 'auto'
+            }}>
+                {/* SELECT */}
+                <Box sx={{ minWidth: 120 }}>
+                    <FormControl fullWidth sx={{
+                        "& .Mui-focused .MuiOutlinedInput-notchedOutline": {
+                            border: "0",
+                            borderRadius: "0"
+                        }
+                    }}>
+                        {/* <Typography variant='h4'>Sort</Typography> */}
+                        <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={sort}
+                            // label="Age"
+                            onChange={handleChange}
+                            sx={{
+                                border: 1,
+                                borderColor: '#f92f60',
+                                color: '#CA0B4A',
+                                "&:hover": {
+                                    "&& fieldset": {
+                                        border: "none"
+                                    }
+                                }
+                            }}
+                        >
+                            <MenuItem value={'recent'}>Most Recent Posts</MenuItem>
+                            <MenuItem value={'groupies'}>Groupies Posts</MenuItem>
+                            <MenuItem value={'yours'}>Your Posts</MenuItem>
+                        </Select>
+                    </FormControl>
+                </Box>
+                {/* PINK */}
                 <Box sx={{
                     bgcolor: '#F8CECC',
                     mx: 'auto',
-                    width: '60%',
+                    width: '100%',
                     height: 450,
                     // display: 'flex',
                     justifyContent: 'center',
-                    py: '25px',
+                    py: '10px',
                     maxHeight: 450,
                     overflow: 'auto'
                 }}>

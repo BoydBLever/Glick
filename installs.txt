@@ -6,7 +6,7 @@ Front:
 (React App)
     MUI:
     npm install @mui/joy @emotion/react @emotion/styled @material/card
-    npm install @fontsource/public-sans
+    npm install @fontsource/public-sans @mui/icons-material
 npm i axios react-router-dom dotenv cookie-parser
 
 All:

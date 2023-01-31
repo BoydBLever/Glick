@@ -31,6 +31,41 @@ const buttonSX = {
 }
 
 const Login = () => {
+    const [formData, setFormData] = useState({
+        name: "",
+        userName: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+    });
+    
+    const [errors, setErrors] = useState({});
+    const navigate = useNavigate();
+
+    const onChangeHandler = e => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    //handler when the form is submitted
+    const onSubmitHandler = e => {
+        //prevent default behavior of the submit
+        e.preventDefault();
+        //make a post request to create a new product
+        axios.post('http://localhost:8000/api/pets', formData)
+            .then(res => {
+                console.log(res)
+                navigate("/")
+            })
+            .catch(err => {
+                // console.log("test");
+                console.log(err);
+                setErrors(err.response.data.errors);
+            })
+    }
+
     return (
         <Sheet
             sx={{
