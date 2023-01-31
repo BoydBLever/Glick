@@ -7,8 +7,7 @@ const port = 8000;
 const jwt = require("jsonwebtoken");
 const cookieParser = require('cookie-parser');
 
-const fs = require('fs');
-const path = require('path');
+
 require('dotenv/config');
 
 require('./config/mongoose.config');

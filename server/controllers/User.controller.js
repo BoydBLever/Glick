@@ -2,6 +2,8 @@ const User = require('../models/User.model');
 const bcrypt = require('bcrypt');
 const jwt = require("jsonwebtoken");
 const secret = process.env.SECRET_KEY;
+const fs = require('fs');
+const path = require('path');
 
 module.exports = {
     index: (request, response) => {
@@ -32,15 +34,17 @@ module.exports = {
     },
 
     postImg: (req, res) => {
+        console.log(req);
         var obj = {
             name: req.body.name,
             desc: req.body.desc,
             img: {
-                data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
+                data: fs.readFileSync(path.join(__dirname + '../uploads/' + req.file.filename)),
                 contentType: 'image/png'
             }
         }
         User.findOneAndUpdate({ _id: request.params.id }, request.body)
+            console.log("Hello from postImg!")
             .then(updatedUser => response.json(updatedUser))
             .catch(err => response.json(err))
     },
