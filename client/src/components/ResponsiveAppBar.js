@@ -13,15 +13,13 @@ import InputBase from '@mui/material/InputBase';
 import MenuItem from '@mui/material/MenuItem';
 import SearchIcon from '@mui/icons-material/Search';
 import { useNavigate } from 'react-router-dom';
-// import AdbIcon from '@mui/icons-material/Adb';
-// import Tooltip from '@mui/material/Tooltip';
+
 
 const pages = ['profile', 'messages', 'groupies', 'licks'];
-// const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-  // const [anchorElUser, setAnchorElUser] = React.useState(null);
+
   const navigate = useNavigate();
 
   const Search = styled('div')(({ theme }) => ({
@@ -102,18 +100,13 @@ function ResponsiveAppBar() {
             component="img"
             sx={{
               position: 'relative',
-              // left: '5px',
               top: '8px',
-              // verticalAlign: 'middle',
               height: 80,
               width: 80,
               border: 1,
               bgcolor: 'white',
               borderRadius: '50px',
               mx: '5px',
-
-              // maxHeight: { xs: 233, md: 167 },
-              // maxWidth: { xs: 350, md: 250 },
             }}
             alt="Uplick Logo"
             src={logo}
@@ -177,28 +170,7 @@ function ResponsiveAppBar() {
                 </MenuItem>
               ))}
             </Menu>
-
-
           </Box>
-          {/* <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} /> */}
-          {/* <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href=""
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            LOGO
-          </Typography> */}
 
           {/* WIDE VERSION MAIN BUTTONS */}
           <Box sx={{
@@ -235,35 +207,6 @@ function ResponsiveAppBar() {
           >
             logout
           </Button>
-          {/* <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box> */}
         </Toolbar>
       </Container>
     </AppBar>
