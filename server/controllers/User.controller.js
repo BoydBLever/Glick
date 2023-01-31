@@ -40,6 +40,7 @@ login: async(req, res) => {
      
         if(user === null) {
         // email not found in users collection
+            // console.log('email not found in users collection');
             return res.sendStatus(400);
         }
      

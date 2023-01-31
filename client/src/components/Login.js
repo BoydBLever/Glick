@@ -6,6 +6,9 @@ import Input from '@mui/joy/Input';
 import Button from '@mui/joy/Button';
 import { Box } from '@mui/system';
 import Link from '@mui/joy/Link';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 // import { styled } from "@mui/system";
 
 // import { bgcolor, color } from '@mui/system';
@@ -32,13 +35,10 @@ const buttonSX = {
 
 const Login = () => {
     const [formData, setFormData] = useState({
-        name: "",
-        userName: "",
         email: "",
         password: "",
-        confirmPassword: "",
     });
-    
+
     const [errors, setErrors] = useState({});
     const navigate = useNavigate();
 
@@ -54,15 +54,15 @@ const Login = () => {
         //prevent default behavior of the submit
         e.preventDefault();
         //make a post request to create a new product
-        axios.post('http://localhost:8000/api/pets', formData)
+        axios.post('http://localhost:8000/api/login', formData)
             .then(res => {
                 console.log(res)
-                navigate("/")
+                navigate("/landing")
             })
             .catch(err => {
                 // console.log("test");
-                console.log(err);
-                setErrors(err.response.data.errors);
+                // navigate('/error');
+                setErrors({errors: 'Email or password is incorrect'});
             })
     }
 
@@ -98,13 +98,19 @@ const Login = () => {
                     alt="Uplick Logo"
                     src={logo}
                 />
-                <Typography sx={{ color: '#CA0B4A' }} variant="h3">Get Cooking</Typography>
+                <Typography sx={{ color: '#CA0B4A' }} variant="h3">Get Licking</Typography>
             </Box>
+                {
+                    errors.errors && (
+                        <Typography sx={{color: 'red', mx: 'auto'}}> {errors.errors} </Typography>
+                    )
+                }
             <FormControl>
                 <FormLabel sx={{ color: '#CA0B4A' }}>Email</FormLabel>
                 <Input
                     sx={inputSX}
                     // html input attribute
+                    onChange={onChangeHandler}
                     name="email"
                     type="email"
                     placeholder="johndoe@email.com"
@@ -118,23 +124,24 @@ const Login = () => {
                         borderColor: '#f92f60',
                         color: '#CA0B4A'
                     }}
+                    onChange={onChangeHandler}
                     name="password"
                     type="password"
                     placeholder="password"
                 />
             </FormControl>
-            <Button sx={buttonSX}>
+            <Button sx={buttonSX} onClick={onSubmitHandler}>
                 Log in
             </Button>
             <Typography
-                endDecorator={<Link href="/register">Sign up</Link>}
+                // endDecorator={}
                 fontSize="sm"
                 sx={{
                     alignSelf: 'center',
                     color: '#CA0B4A'
                 }}
             >
-                Don't have an account?
+                Don't have an account? <Link href="/register">Sign up</Link>
             </Typography>
 
         </Sheet>

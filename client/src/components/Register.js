@@ -5,6 +5,7 @@ import FormLabel from '@mui/joy/FormLabel';
 import Input from '@mui/joy/Input';
 import Button from '@mui/joy/Button';
 import { Box } from '@mui/system';
+import { useState } from 'react';
 // import Link from '@mui/joy/Link';
 // import { bgcolor, color } from '@mui/system';
 // import Box from '@mui/joy/Box';
@@ -23,6 +24,14 @@ const buttonSX = {
 }
 
 const Register = () => {
+    const [formData, setFormData] = useState({
+        name: "",
+        userName: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+    });
+
     return (
         <Sheet
             sx={{
