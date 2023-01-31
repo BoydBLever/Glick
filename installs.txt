@@ -1,13 +1,14 @@
+All:
+npm i jsonwebtoken
+
 Back: 
 npm init -y (for server.js file)
-npm i express mongoose socket.io cors bcrypt
+npm i express body-parser multer mongoose socket.io cors bcrypt
 
 Front:
 (React App)
     MUI:
     npm install @mui/joy @emotion/react @emotion/styled @material/card
     npm install @fontsource/public-sans @mui/icons-material
-npm i axios react-router-dom dotenv cookie-parser
+    npm i axios react-router-dom dotenv ejs cookie-parser
 
-All:
-npm i jsonwebtoken

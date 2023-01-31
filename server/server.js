@@ -1,9 +1,15 @@
 const express = require('express');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose')
 const cors = require('cors');
 const app = express();
 const port = 8000;
 const jwt = require("jsonwebtoken");
 const cookieParser = require('cookie-parser');
+
+const fs = require('fs');
+const path = require('path');
+require('dotenv/config');
 
 require('./config/mongoose.config');
 

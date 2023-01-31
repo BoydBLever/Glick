@@ -20,16 +20,9 @@ const uplick = require('./upArrow.png');
 const downlick = require('./downArrow.png');
 const PFP = require('./downlick.png');
 
-// const ExpandMore = styled((props) => {
-//     const { expand, ...other } = props;
-//     return <IconButton {...other} />;
-// })(({ theme, expand }) => ({
-//     transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-//     marginLeft: 'auto',
-//     transition: theme.transitions.create('transform', {
-//         duration: theme.transitions.duration.shortest,
-//     }),
-// }));
+const upLick = () => {
+    
+}
 
 export default function PostCard() {
     // const [expanded, setExpanded] = React.useState(false);
@@ -88,14 +81,14 @@ export default function PostCard() {
                 justifyContent: 'center',
             }}>
                 <CardActions disableSpacing>
-                    <IconButton aria-label="uplick">
+                    <IconButton 
+                    onClick={upLick}
+                    aria-label="uplick">
                         <Box
                             component="img"
                             sx={{
                                 height: 50,
                                 width: 70,
-                                // maxHeight: { xs: 233, md: 167 },
-                                // maxWidth: { xs: 350, md: 250 },
                             }}
                             alt="Uplick"
                             src={uplick}
