@@ -1,5 +1,5 @@
 import Sheet from '@mui/joy/Sheet';
-import Typography from '@mui/joy/Typography';
+import Typography from '@mui/material/Typography';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import Input from '@mui/joy/Input';
@@ -22,8 +22,9 @@ const inputSX = {
 }
 
 const buttonSX = {
-    mt: '1',
+    mt: '12px',
     bgcolor: '#f92f60',
+    color: 'white',
     "&:hover": {
         bgcolor: '#CA0B4A'
     }
@@ -62,7 +63,7 @@ const Login = () => {
                     alt="Uplick Logo"
                     src={logo}
                 />
-                <Typography sx={{ color: '#CA0B4A' }} level="h4">Sign In</Typography>
+                <Typography sx={{ color: '#CA0B4A' }} variant="h3">Get Cooking</Typography>
             </Box>
             <FormControl>
                 <FormLabel sx={{ color: '#CA0B4A' }}>Email</FormLabel>

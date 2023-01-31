@@ -40,6 +40,8 @@ export default function PostCard() {
 
     return (
         <Card sx={{
+            mx: 'auto',
+            my: '15px',
             width: '80%',
             // height: '200px',
             py: '10px',

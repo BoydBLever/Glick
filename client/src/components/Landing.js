@@ -8,22 +8,31 @@ const Landing = () => {
         // Everything box
         <Box sx={{
             display: 'flex',
-            alignItems: 'center',
+            alignItems: 'center'
         }}>
-            {/* PINK BOX */}
-            <Box sx={{
-                bgcolor: '#F8CECC',
-                mx: 'auto',
-                width: '60%',
-                height: '300',
-                display: 'flex',
-                justifyContent: 'center',
-                py: '25px'
-            }}>
-                {/* map recent posts */}
-                <PostCard />
+            {/* PINK BOX OUTER */}
+            <Box>
+                
+                <Box sx={{
+                    bgcolor: '#F8CECC',
+                    mx: 'auto',
+                    width: '60%',
+                    height: 450,
+                    // display: 'flex',
+                    justifyContent: 'center',
+                    py: '25px',
+                    maxHeight: 450,
+                    overflow: 'auto'
+                }}>
+                    {/* map recent posts */}
+                    <PostCard />
+                    <PostCard />
+                    <PostCard />
+                    <PostCard />
+                    <PostCard />
 
-                {/* <ResponsiveDrawer/> */}
+                    {/* <ResponsiveDrawer/> */}
+                </Box>
             </Box>
             {/* DIVIDER */}
             <Box sx={{
@@ -36,12 +45,19 @@ const Landing = () => {
                 // bgcolor: '#F8CECC',
                 mx: 'auto',
                 width: '30%',
-                height: '300',
-                display: 'flex',
-                justifyContent: 'center',
-                py: '25px'
+                height: '80vh',
+                maxHeight: '80vh',
+                py: '25px',
+                overflow: 'auto',
             }}>
-                <Enlarge/>
+                <Enlarge />
+                <Enlarge />
+                <Enlarge />
+                <Enlarge />
+                <Enlarge />
+                <Enlarge />
+                <Enlarge />
+                <Enlarge />
             </Box>
         </Box>
     )
