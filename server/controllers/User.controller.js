@@ -31,6 +31,20 @@ module.exports = {
         });
     },
 
+    postImg: (req, res) => {
+        var obj = {
+            name: req.body.name,
+            desc: req.body.desc,
+            img: {
+                data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
+                contentType: 'image/png'
+            }
+        }
+        User.findOneAndUpdate({ _id: request.params.id }, request.body)
+            .then(updatedUser => response.json(updatedUser))
+            .catch(err => response.json(err))
+    },
+
     register: (req, res) => {
         User.create(req.body)
             .then(user => {
