@@ -25,8 +25,7 @@ const UserSchema = new mongoose.Schema({
     minlength: [8, "Password must be 8 characters or longer."]
   },
   img: {
-    data: Buffer,
-    contentType: String
+    type: String,
   },
   posts: {
     type: [],

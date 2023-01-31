@@ -1,3 +1,4 @@
+import FileBase64 from 'react-file-base64';
 import Sheet from '@mui/joy/Sheet';
 import Typography from '@mui/material/Typography';
 import FormControl from '@mui/joy/FormControl';
@@ -30,6 +31,7 @@ const Register = () => {
         email: "",
         password: "",
         confirmPassword: "",
+        img: ""
     });
 
     return (
@@ -149,6 +151,9 @@ const Register = () => {
                     />
                 </FormControl>
             </Box>
+            <FileBase64
+            multiple={false}
+            onDone={({base64})=>setFormData({...FormData, img: base64})}/>
             <Button sx={buttonSX}>
                 Sign Up
             </Button>

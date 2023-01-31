@@ -57,7 +57,7 @@ const Login = () => {
         axios.post('http://localhost:8000/api/login', formData)
             .then(res => {
                 console.log(res)
-                navigate("/landing")
+                navigate(`/${formData.email}/landing`)
             })
             .catch(err => {
                 // console.log("test");
