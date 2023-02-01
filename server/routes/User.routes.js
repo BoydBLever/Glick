@@ -6,7 +6,8 @@ module.exports = function(app){
     // app.post('/api', Users.postImg);
     app.post("/api/register", Users.register);
     app.post("/api/login", Users.login);
-    app.get('/api/:email/getByEmail', Users.getByEmail);
+    app.get('/api/getByEmail/:email', Users.getByEmail);
+    app.put('/api/updateUser/:email', Users.update);
     app.get("/api/users", authenticate, Users.getAll); //Has authentications
 }
 

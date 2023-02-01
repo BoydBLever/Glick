@@ -1,3 +1,4 @@
+Hi From Alexis 01.31.23 5:53PM
 All:
 npm i jsonwebtoken
 
@@ -11,4 +12,5 @@ Front:
     npm install @mui/joy @emotion/react @emotion/styled @material/card
     npm install @fontsource/public-sans @mui/icons-material
     npm i axios react-router-dom dotenv ejs cookie-parser
+    npm install react-file-base64
 

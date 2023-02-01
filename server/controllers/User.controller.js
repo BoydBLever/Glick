@@ -23,9 +23,15 @@ module.exports = {
     },
 
     getByEmail: (req, res) => {
-        User.findOne({email: request.params.email})
-        .then(user => response.json(user))
-        .catch(err => response.status(400).json(err))
+        User.findOne({email: req.params.email})
+        .then(allUsers => res.json(allUsers))
+        .catch(err => res.status(400).json(err))
+    },
+
+    update: (req, res) => {
+        User.findOneAndUpdate({email: req.params.email}, req.body)
+        .then(updatedUser => res.json(updatedUser))
+        .catch(err => res.status(400).json(err))
     },
 
     // getImg: (req, res) => {

@@ -1,4 +1,3 @@
-import FileBase64 from 'react-file-base64';
 import Sheet from '@mui/joy/Sheet';
 import Typography from '@mui/material/Typography';
 import FormControl from '@mui/joy/FormControl';
@@ -7,6 +6,8 @@ import Input from '@mui/joy/Input';
 import Button from '@mui/joy/Button';
 import { Box } from '@mui/system';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 // import Link from '@mui/joy/Link';
 // import { bgcolor, color } from '@mui/system';
 // import Box from '@mui/joy/Box';
@@ -31,8 +32,33 @@ const Register = () => {
         email: "",
         password: "",
         confirmPassword: "",
-        img: ""
     });
+
+    const [errors, setErrors] = useState({});
+    const navigate = useNavigate();
+
+    const onChangeHandler = e => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    const onSubmitHandler = e => {
+        //prevent default behavior of the submit
+        e.preventDefault();
+        //make a post request to create a new product
+        axios.post('http://localhost:8000/api/register', formData)
+            .then(res => {
+                console.log(res)
+                navigate(`/${formData.email}/landing`)
+            })
+            .catch(err => {
+                // console.log("test");
+                // navigate('/error');
+                setErrors(err.response.data.errors);
+            })
+    }
 
     return (
         <Sheet
@@ -83,6 +109,7 @@ const Register = () => {
                             color: '#CA0B4A'
                         }}
                         // html input attribute
+                        onChange={onChangeHandler}
                         name="name"
                         type="text"
                         placeholder="Alexis DeCicco"
@@ -96,6 +123,7 @@ const Register = () => {
                             borderColor: '#f92f60',
                             color: '#CA0B4A'
                         }}
+                        onChange={onChangeHandler}
                         name="userName"
                         type="text"
                         placeholder="AlexisDeCoy"
@@ -104,7 +132,7 @@ const Register = () => {
             </Box>
 
             <FormControl sx={{ width: '40%', mx: 'auto' }}>
-                <FormLabel sx={{ color: '#CA0B4A' }}>Email or Phone</FormLabel>
+                <FormLabel sx={{ color: '#CA0B4A' }}>Email</FormLabel>
                 <Input
                     sx={{
                         border: 1,
@@ -112,7 +140,8 @@ const Register = () => {
                         color: '#CA0B4A'
                     }}
                     // html input attribute
-                    name="emailPhone"
+                    onChange={onChangeHandler}
+                    name="email"
                     type="text"
                     placeholder="johndoe@email.com"
                 />
@@ -132,6 +161,7 @@ const Register = () => {
                             color: '#CA0B4A'
                         }}
                         // html input attribute
+                        onChange={onChangeHandler}
                         name="password"
                         type="password"
                         placeholder="password"
@@ -145,16 +175,14 @@ const Register = () => {
                             borderColor: '#f92f60',
                             color: '#CA0B4A'
                         }}
+                        onChange={onChangeHandler}
                         name="confirmPassword"
                         type="password"
                         placeholder="password"
                     />
                 </FormControl>
             </Box>
-            <FileBase64
-            multiple={false}
-            onDone={({base64})=>setFormData({...FormData, img: base64})}/>
-            <Button sx={buttonSX}>
+            <Button sx={buttonSX} onClick={onSubmitHandler}>
                 Sign Up
             </Button>
         </Sheet>
