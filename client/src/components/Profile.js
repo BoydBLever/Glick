@@ -1,9 +1,20 @@
 import Cookies from 'js-cookie';
+import { Box } from '@mui/system';
 import FileBase64 from 'react-file-base64';
+import Typography from '@mui/material/Typography';
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { Button } from '@mui/material';
 
+const buttonSX = {
+    mt: '12px',
+    bgcolor: '#f92f60',
+    color: 'white',
+    "&:hover": {
+        bgcolor: '#CA0B4A'
+    }
+}
 
 const Profile = () => {
     const [user, setUser] = useState({})
@@ -39,20 +50,49 @@ const Profile = () => {
 
 
     return (
-        <>
-            <form onSubmit={onSubmitHandler}>
-                <FileBase64
-                    type='file'
-                    multiple={false}
-                    onDone={({ base64 }) => setImg({ img: base64 })} />
-                <button >submit</button>
-            </form>
+        <Box sx={{
+            display: 'flex',
+            mt: '10px',
+        }}>
+            <Box className sx={{
+                width: '40%',
+                textAlign: 'center',
+                mx: 'auto',
+                mb: '10px',
+                // border: 1,
+                // borderRadius: '10px',
+                py: '10px',
+                px: '20px',
+                // bgcolor: ,
+            }}>
+                <img className="activator" style={{ width: '50%'}} src={user.img} />
 
-            <h1>{user.img}</h1>
+                <form style={{textAlign: 'center'}} onSubmit={onSubmitHandler}>
+                    <FileBase64
+                        type='file'
+                        multiple={false}
+                        onDone={({ base64 }) => setImg({ img: base64 })} /><br/>
+                     <Button sx={buttonSX}>Set Profile Photo</Button>
+                </form>
+            </Box>
 
-            <img className="activator" style={{ width: '100%', height: 300 }} src={user.img} />
-            {/* <img className="activator" style={{ width: '100%', height: 300 }} src={{ uri: `data:image/jpg;base64,${img}` }} /> */}
-        </>
+            <Box sx={{
+                width: '40%',
+                textAlign: 'center',
+                mx: 'auto',
+                mb: '10px',
+                // border: 1,
+                // borderRadius: '10px',
+                py: '10px',
+                px: '20px',
+            }}>
+                <Typography variant='h2'>{user.name}</Typography>
+                <Typography variant='h3'>{user.userName}</Typography>
+                <Typography variant='h3'>{user.email}</Typography>
+                <Typography variant='h3'>Groupies #</Typography>
+
+            </Box>
+        </Box>
     )
 
     //  more code....
