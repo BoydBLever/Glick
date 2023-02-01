@@ -1,0 +1,10 @@
+.inputfile input[type="file" i]::-webkit-file-upload-button{
+    color: white;
+    background-color: #F92F60;
+    border-radius: 5px;
+    border:#F92F60;
+}
+
+.inputfile {
+    padding-bottom: 10px;
+}
