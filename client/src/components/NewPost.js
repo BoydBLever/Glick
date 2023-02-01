@@ -5,7 +5,7 @@ import FormLabel from '@mui/material/FormLabel';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { Input } from '@mui/material';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Navigate, useNavigate } from 'react-router-dom';
 import FileBase64 from 'react-file-base64';
@@ -31,6 +31,31 @@ const buttonSX = {
 
 const NewPost = (props) => {
 
+        const [selectedFile, setSelectedFile] = useState()
+        const [preview, setPreview] = useState()
+    
+        // create a preview as a side effect, whenever selected file is changed
+        useEffect(() => {
+            if (!selectedFile) {
+                setPreview(undefined)
+                return
+            }
+
+            const objectUrl = URL.createObjectURL(selectedFile)
+            setPreview(objectUrl)
+
+            return () => URL.revokeObjectURL(objectUrl)
+        }, [selectedFile])
+
+        const onSelectFile = e => {
+            if (!e.target.files || e.target.files.length === 0) {
+                setSelectedFile(undefined)
+                return
+            }
+
+            setSelectedFile(e.target.files[0])
+        }
+    
     const [formData, setFormData] = useState({
         content: "",
         flavor: "",
@@ -98,13 +123,19 @@ const NewPost = (props) => {
                         )
                     }
                     <FormControl>
-                        <div className = {base64Style.inputfile} >
+                        <FormLabel sx={{ color: '#CA0B4A' }}>Image Upload</FormLabel>
+                        <div className={base64Style.inputfile} >
                             <FileBase64
                                 type='file'
                                 multiple={false}
-                                onDone={({ base64 }) => setImg({ img: base64 })} />
+                                onDone={({ base64 }) => setImg({img: base64})} />
                         </div>
-
+            <div>
+                 {/* <input type='file' onChange={onSelectFile} /> */}
+                <img src={img.img} /> 
+            </div>
+                    </FormControl>
+                    <FormControl>
                         <FormLabel sx={{ color: '#CA0B4A' }}>Content</FormLabel>
                         <Input
                             sx={inputSX}
@@ -112,7 +143,7 @@ const NewPost = (props) => {
                             onChange={onChangeHandler}
                             name="content"
                             type="content"
-                            placeholder="A selfie with my kitten"
+                            placeholder="Selfie with kitten"
                         />
                     </FormControl>
                     <FormControl>
