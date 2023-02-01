@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { Link, useNavigate, useParams } from "react-router-dom";
 import PostCard from "./PostCard";
 import Enlarge from "./Enlarge";
 import Box from "@mui/material/Box";
@@ -7,16 +8,31 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import React from "react";
+import axios from 'axios';
 import { Typography } from '@mui/material';
 // import Divider from '@mui/joy/Divider';
 
 
 const Landing = () => {
     const [sort, setSort] = useState('recent');
+    const [posts, setPosts] = useState([]);
+    const { email } = useParams();
+
+    useEffect(() => {
+        axios.get(`http://localhost:8000/api/posts`)
+            .then(res => {
+                console.log(res);
+                setPosts(res.data)
+            }
+            )
+            .catch(err => console.error(err));
+    }, []);
 
     const handleChange = (event) => {
         setSort(event.target.value);
     };
+
+
 
     return (
         // Everything box
@@ -74,12 +90,11 @@ const Landing = () => {
                     overflow: 'auto'
                 }}>
                     {/* map recent posts */}
-                    <PostCard />
-                    <PostCard />
-                    <PostCard />
-                    <PostCard />
-                    <PostCard />
-
+                    {posts.map((post, i) =>
+                        <div key={i}>
+                            <PostCard id={post._id} />
+                        </div>
+                    )}
                     {/* <ResponsiveDrawer/> */}
                 </Box>
             </Box>

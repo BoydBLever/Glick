@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 import { Input } from '@mui/material';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import FileBase64 from 'react-file-base64';
 import base64Style from './main.module.css';
 
@@ -30,41 +30,21 @@ const buttonSX = {
 }
 
 const NewPost = (props) => {
+    const { email } = useParams();
+    const [user, setUser] = useState({});
 
-        const [selectedFile, setSelectedFile] = useState()
-        const [preview, setPreview] = useState()
-    
-        // create a preview as a side effect, whenever selected file is changed
-        useEffect(() => {
-            if (!selectedFile) {
-                setPreview(undefined)
-                return
-            }
-
-            const objectUrl = URL.createObjectURL(selectedFile)
-            setPreview(objectUrl)
-
-            return () => URL.revokeObjectURL(objectUrl)
-        }, [selectedFile])
-
-        const onSelectFile = e => {
-            if (!e.target.files || e.target.files.length === 0) {
-                setSelectedFile(undefined)
-                return
-            }
-
-            setSelectedFile(e.target.files[0])
-        }
-    
     const [formData, setFormData] = useState({
         content: "",
         flavor: "",
-        img: ""
+        img: "",
+        poster: email,
+        uplicks: 0,
+        downlicks: 0
     });
 
     const [errors, setErrors] = useState({});
     const navigate = useNavigate();
-    const [img, setImg] = useState({});
+    const [img, setImg] = useState({ img: '' });
 
     const onChangeHandler = e => {
         setFormData({
@@ -78,10 +58,10 @@ const NewPost = (props) => {
         //prevent default behavior of the submit
         e.preventDefault();
         //make a post request to create a new product
-        axios.post('http://localhost:8000/api/login', formData)
+        axios.post(`http://localhost:8000/api/${email}/newpost`, formData)
             .then(res => {
                 console.log(res)
-                navigate(`/${formData.email}/landing`)
+                navigate(`/${email}/landing`)
             })
             .catch(err => {
                 // console.log("test");
@@ -91,79 +71,91 @@ const NewPost = (props) => {
     }
 
     return (
-        <Box>
+        <Box sx={{
+            display: 'flex',
+            justifyContent: 'space-evenly',
+            alignItems: 'center',
+        }}>
             {/* IMG PREVIEW GOES HERE */}
-            <Box>
-                <Box
-                    sx={{
-                        width: '50%',
-                        mx: 'auto', // margin left & right
-                        my: 4, // margin top & botom
-                        py: 3, // padding top & bottom
-                        px: 2, // padding left & right
-                        display: 'flex',
-                        flexDirection: 'column',
-                        gap: 2,
-                        border: 1,
-                        borderColor: '#F92F60',
-                        borderRadius: '50px',
-                        boxShadow: 'md'
-                    }}
-                >
-                    <Box sx={{
-                        display: 'flex',
-                        alignItems: 'center'
-                    }}>
-
-                        <Typography sx={{ color: '#CA0B4A' }} variant="h3">Cook Up A Post</Typography>
-                    </Box>
-                    {
-                        errors.errors && (
-                            <Typography sx={{ color: 'red', mx: 'auto' }}> {errors.errors} </Typography>
-                        )
-                    }
-                    <FormControl>
-                        <FormLabel sx={{ color: '#CA0B4A' }}>Image Upload</FormLabel>
-                        <div className={base64Style.inputfile} >
-                            <FileBase64
-                                type='file'
-                                multiple={false}
-                                onDone={({ base64 }) => setImg({img: base64})} />
-                        </div>
-            <div>
-                 {/* <input type='file' onChange={onSelectFile} /> */}
-                <img src={img.img} /> 
-            </div>
-                    </FormControl>
-                    <FormControl>
-                        <FormLabel sx={{ color: '#CA0B4A' }}>Content</FormLabel>
-                        <Input
-                            sx={inputSX}
-                            // html input attribute
-                            onChange={onChangeHandler}
-                            name="content"
-                            type="content"
-                            placeholder="Selfie with kitten"
-                        />
-                    </FormControl>
-                    <FormControl>
-                        <FormLabel sx={{ color: '#CA0B4A' }}>Flavors</FormLabel>
-                        <Input
-                            sx={{
-                                border: 1,
-                                borderColor: '#f92f60',
-                                color: '#CA0B4A'
-                            }}
-                            onChange={onChangeHandler}
-                            name="flavor"
-                            type="flavor"
-                            placeholder="Selfie"
-                        />
-                    </FormControl>
-                    <Button sx={buttonSX} onClick={onSubmitHandler}>
-                        POST
-                    </Button>
+            {img.img != '' &&
+                <Box sx={{
+                    width: '40%',
+                    mt: '10px'
+                }}>
+                    <img style={{width: '100%'}} src={img.img} />
                 </Box>
+            }
+
+            {/* FORM */}
+            <Box
+                sx={{
+                    width: '50%',
+                    // height: 'auto',
+                    // mx: 'auto', // margin left & right
+                    my: 4, // margin top & botom
+                    py: 3, // padding top & bottom
+                    px: 2, // padding left & right
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: 2,
+                    border: 1,
+                    borderColor: '#F92F60',
+                    borderRadius: '50px',
+                    boxShadow: 'md'
+                }}
+            >
+                <Box sx={{
+                    display: 'flex',
+                    alignItems: 'center'
+                }}>
+
+                    <Typography sx={{ color: '#CA0B4A' }} variant="h3">Cook Up A Post</Typography>
+                </Box>
+                {
+                    errors.errors && (
+                        <Typography sx={{ color: 'red', mx: 'auto' }}> {errors.errors} </Typography>
+                    )
+                }
+                <FormControl>
+                    <FormLabel sx={{ color: '#CA0B4A' }}>Image Upload</FormLabel>
+                    <div className={base64Style.inputfile} >
+                        <FileBase64
+                            type='file'
+                            multiple={false}
+                            onDone={({ base64 }) => {
+                                setImg({ img: base64 })
+                                setFormData({...formData, img: base64})
+                                }} />
+                    </div>
+                </FormControl>
+                <FormControl>
+                    <FormLabel sx={{ color: '#CA0B4A' }}>Content</FormLabel>
+                    <Input
+                        sx={inputSX}
+                        // html input attribute
+                        onChange={onChangeHandler}
+                        name="content"
+                        type="content"
+                        placeholder="Selfie with kitten"
+                    />
+                </FormControl>
+                <FormControl>
+                    <FormLabel sx={{ color: '#CA0B4A' }}>Flavors</FormLabel>
+                    <Input
+                        sx={{
+                            border: 1,
+                            borderColor: '#f92f60',
+                            color: '#CA0B4A'
+                        }}
+                        onChange={onChangeHandler}
+                        name="flavor"
+                        type="flavor"
+                        placeholder="Selfie"
+                    />
+                </FormControl>
+                <Button sx={buttonSX} onClick={onSubmitHandler}>
+                    POST
+                </Button>
             </Box>
         </Box>
     )
