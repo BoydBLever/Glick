@@ -1,4 +1,3 @@
-import Cookies from 'js-cookie';
 import { Box } from '@mui/system';
 import FileBase64 from 'react-file-base64';
 import Typography from '@mui/material/Typography';

@@ -2,9 +2,7 @@ const User = require('../models/User.model');
 const bcrypt = require('bcrypt');
 const jwt = require("jsonwebtoken");
 const secret = process.env.SECRET_KEY;
-const fs = require('fs');
-const path = require('path');
-const { request } = require('http');
+// const { request } = require('http');
 
 module.exports = {
     index: (request, response) => {
@@ -33,34 +31,6 @@ module.exports = {
         .then(updatedUser => res.json(updatedUser))
         .catch(err => res.status(400).json(err))
     },
-
-    // getImg: (req, res) => {
-    //     User.find({}, (err, items) => {
-    //         if (err) {
-    //             console.log(err);
-    //             res.status(500).send('An error occurred', err);
-    //         }
-    //         else {
-    //             res.render('imagesPage', { items: items });
-    //         }
-    //     });
-    // },
-
-    // postImg: (req, res) => {
-    //     console.log(req);
-    //     var obj = {
-    //         name: req.body.name,
-    //         desc: req.body.desc,
-    //         img: {
-    //             data: fs.readFileSync(path.join(__dirname + '../uploads/' + req.file.filename)),
-    //             contentType: 'image/png'
-    //         }
-    //     }
-    //     User.findOneAndUpdate({ _id: request.params.id }, request.body)
-    //         console.log("Hello from postImg!")
-    //         .then(updatedUser => response.json(updatedUser))
-    //         .catch(err => response.json(err))
-    // },
 
     register: (req, res) => {
         User.create(req.body)

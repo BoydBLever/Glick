@@ -30,6 +30,9 @@ const UserSchema = new mongoose.Schema({
   posts: {
     type: [],
   },
+  groupies: {
+    type: [],
+  }
 }, { timestamps: true });
 
 UserSchema.virtual('confirmPassword')

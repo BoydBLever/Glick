@@ -3,7 +3,7 @@ const User = require('../models/User.model');
 
 const PostSchema = new mongoose.Schema({
     img: {
-        type: String, //NEEEEEEEEDS ADJUSTING
+        type: String,
         required: [true, "Upload an image to post."]
     },
     content: {
@@ -11,8 +11,12 @@ const PostSchema = new mongoose.Schema({
         required: [true, "Please describe the image you're posting."]
     },
     poster: {
-        type: User,
+        type: String,
         required: [true]
+    },
+    flavor: {
+        type: String,
+        required: [true, "What flavor is your post? i.e. Selfie, Kitten Pic"]
     },
     uplicks: {
         type: Number,

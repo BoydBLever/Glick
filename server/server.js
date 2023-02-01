@@ -13,6 +13,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 require('./routes/User.routes')(app);
+require('./routes/Post.routes')(app);
 require('dotenv').config();
 
 const myFirstSecret = process.env.SECRET_KEY;
