@@ -5,5 +5,5 @@ module.exports = function(app){
     app.get("/api/posts", Posts.getAll);
     app.get("/api/:email/posts", Posts.getByEmail);
     app.get("/api/posts/:id", Posts.findOne);
-    app.put('/api/:email/updatepost', Posts.update)
+    app.put('/api/:id/updatepost', Posts.update)
 }

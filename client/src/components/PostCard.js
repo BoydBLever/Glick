@@ -21,131 +21,141 @@ const uplick = require('./upArrow.png');
 const downlick = require('./downArrow.png');
 const PFP = require('./downlick.png');
 
-const upLick = () => {
-
-}
-
-
 
 const PostCard = (props) => {
-    // const [expanded, setExpanded] = React.useState(false);
     const [post, setPost] = useState({});
     const [user, setUser] = useState({});
     const [profileImg, setProfileImg] = useState('');
-
-
-    // const handleExpandClick = () => {
-    //     setExpanded(!expanded);
-    // };
+    const [up, setUp] = useState(0);
+    const [down, setDown] = useState(0);
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/posts/${props.id}`)
             .then(res => {
                 setPost(res.data);
+                setUp(res.data.uplicks);
+                setDown(res.data.downlicks);
                 return axios.get(`http://localhost:8000/api/getByEmail/${res.data.poster}`)
-                .then(res => {
-                    console.log(res);
-                    setUser(res.data);
-                })
-                .catch(err => console.error(err));
+                    .then(res => {
+                        console.log(res);
+                        setUser(res.data);
+                    })
+                    .catch(err => console.error(err));
             })
             .catch(err => console.error(err));
-        }, []);
-        
-        // .catch(err => console.error(err));
+    }, []);
 
+    const clickUpLick = () => {
+        setUp(up + 1);
+        axios.put(`http://localhost:8000/api/${props.id}/updatepost`, {
+            uplicks: {up}
+        })
+            .then(res => {
+                setPost(res.data);
+            })
+            .catch(err => console.error(err));
+    }
 
-const getUserInfo = () => {
-}
+    const clickDownLick = () => {
+        setDown(down + 1);
+        axios.put(`http://localhost:8000/api/${props.id}/updatepost`, {
+            downlicks: {down}
+        })
+            .then(res => {
+                setPost(res.data);
+            })
+            .catch(err => console.error(err));
+    }
 
-return (
-    <Card sx={{
-        mx: 'auto',
-        my: '15px',
-        width: '90%',
-        // height: '200px',
-        py: '10px',
-        border: 1,
-        borderColor: '#89029C',
-        borderRadius: '20px',
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-evenly',
-        alignItems: 'center'
-    }}>
-        {/* <CardHeader
+    const getUserInfo = () => {
+    }
+
+    return (
+        <Card sx={{
+            mx: 'auto',
+            my: '15px',
+            width: '90%',
+            // height: '200px',
+            py: '10px',
+            border: 1,
+            borderColor: '#89029C',
+            borderRadius: '20px',
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'space-evenly',
+            alignItems: 'center'
+        }}>
+            {/* <CardHeader
                 title="Shrimp and Chorizo Paella"
                 subheader="DATE"
             /> */}
-        {/* <CardMedia
+            {/* <CardMedia
                 component="img"
                 flex='1'
                 image={uplick}
                 alt="Test"
             /> */}
-        <Box
-            component="img"
-            sx={{
-                height: '150px',
-                width: '30%',
-                minWidth: '200px'
-                // width: 70,
-                // maxHeight: { xs: 233, md: 167 },
-                // maxWidth: { xs: 350, md: 250 },
-            }}
-            alt="Uplick"
-            src={post.img}
-        />
-        <CardContent sx={{
-            // flex: '1',
-            width: "30%",
-            minWidth: '200px'
-        }}>
-            <Typography variant="body2" color="text.secondary">CONTENT: {post.content}</Typography>
-            <Typography variant="body2" color="text.secondary">POSTED BY: {user?.userName}</Typography>
-            <Typography variant="body2" color="text.secondary">DATE: {post.createdAt}</Typography>
-
-        </CardContent>
-        <Box sx={{
-            ml: '-50px',
-            display: 'flex',
-            width: '30%',
-            minWidth: '200px',
-            flexDirection: 'column',
-            justifyContent: 'center',
-        }}>
-            <CardActions disableSpacing>
-                <IconButton
-                    onClick={upLick}
-                    aria-label="uplick">
-                    <Box
-                        component="img"
-                        sx={{
-                            height: 50,
-                            width: 70,
-                        }}
-                        alt="Uplick"
-                        src={uplick}
-                    />
-                    <Typography>54</Typography>
-                </IconButton>
-
-                <IconButton aria-label="downlick">
-                    <Box
-                        component="img"
-                        sx={{
-                            height: 50,
-                            width: 70,
-                            // maxHeight: { xs: 233, md: 167 },
-                            // maxWidth: { xs: 350, md: 250 },
-                        }}
-                        alt="Downlick"
-                        src={downlick}
-                    />
-                    <Typography>12</Typography>
-                </IconButton>
-            </CardActions>
             <Box
+                component="img"
+                sx={{
+                    height: '150px',
+                    width: '30%',
+                    minWidth: '200px'
+                }}
+                alt="Uplick"
+                src={post.img}
+            />
+            <CardContent sx={{
+                width: "30%",
+                minWidth: '200px'
+            }}>
+                <Typography variant="body2" color="text.secondary">CONTENT: {post.content}</Typography>
+                <Typography variant="body2" color="text.secondary">POSTED BY: {user?.userName}</Typography>
+                <Typography variant="body2" color="text.secondary">DATE: {post.createdAt}</Typography>
+
+            </CardContent>
+            <Box sx={{
+                ml: '-50px',
+                display: 'flex',
+                width: '30%',
+                minWidth: '200px',
+                flexDirection: 'column',
+                justifyContent: 'center',
+            }}>
+                <CardActions disableSpacing>
+                    <IconButton
+                        onClick= {clickUpLick}
+                        aria-label="uplick">
+                        <Box
+                            component="img"
+                            sx= {{
+                                height: 50,
+                                width: 70,
+                            }}
+                            alt="Uplick"
+                            src={uplick}
+                        />
+                        <Typography>{up}</Typography>
+                    </IconButton>
+
+                    <IconButton 
+                        onClick={clickDownLick}
+                        aria-label="downlick">
+                        <Box
+                            component="img"
+                            sx={{
+                                height: 50,
+                                width: 70,
+                                // maxHeight: { xs: 233, md: 167 },
+                                // maxWidth: { xs: 350, md: 250 },
+                            }}
+                            alt="Downlick"
+                            src={downlick}
+                        />
+                        <Typography>{down}</Typography>
+                    </IconButton>
+                </CardActions>
+                <Box
                     component="img"
                     sx={{
                         height: 50,
@@ -158,8 +168,8 @@ return (
                     alt="PFP"
                     src={user?.img}
                 />
-        </Box>
-        {/* <ExpandMore
+            </Box>
+            {/* <ExpandMore
           expand={expanded}
           onClick={handleExpandClick}
           aria-expanded={expanded}
@@ -168,7 +178,7 @@ return (
           <ExpandMoreIcon />
         </ExpandMore> */}
 
-        {/* <Collapse in={expanded} timeout="auto" unmountOnExit>
+            {/* <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography paragraph>Method:</Typography>
           <Typography paragraph>
@@ -197,8 +207,8 @@ return (
           </Typography>
         </CardContent>
       </Collapse> */}
-    </Card >
-);
+        </Card >
+    );
 }
 
 export default PostCard;
