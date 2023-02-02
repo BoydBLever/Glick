@@ -9,28 +9,40 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import React from "react";
 import axios from 'axios';
-import { Typography } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 // import Divider from '@mui/joy/Divider';
 
 
 const Landing = () => {
     const [sort, setSort] = useState('recent');
+    const [users, setUsers] = useState([]);
     const [posts, setPosts] = useState([]);
     const { email } = useParams();
+    const navigate = useNavigate();
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/posts`)
             .then(res => {
-                console.log(res);
+                // console.log(res);
                 setPosts(res.data)
-            }
-            )
+                return axios.get(`http://localhost:8000/api/users`)
+                    .then (res => {
+                        console.log("Look Here!")
+                        console.log(res);
+                        setUsers(res.data);
+                    })
+                    .catch(err => console.error(err));
+            })
             .catch(err => console.error(err));
     }, []);
 
     const handleChange = (event) => {
         setSort(event.target.value);
     };
+
+    const newPost = () => {
+        navigate(`/${email}/newpost`)
+    }
 
 
 
@@ -97,6 +109,16 @@ const Landing = () => {
                     )}
                     {/* <ResponsiveDrawer/> */}
                 </Box>
+                <Button onClick={newPost} sx={{
+                    mt: '15px',
+                    width: '75px',
+                    height: '75px',
+                    border: 1,
+                    borderRadius: '75px',
+                    fontSize: '50px',
+                    color: '#CA0B4A',
+                    borderColor: '#89029C',
+                }}>+</Button>
             </Box>
             {/* DIVIDER */}
             <Box sx={{
@@ -113,15 +135,14 @@ const Landing = () => {
                 maxHeight: '80vh',
                 py: '25px',
                 overflow: 'auto',
+                textAlign: 'center',
             }}>
-                <Enlarge />
-                <Enlarge />
-                <Enlarge />
-                <Enlarge />
-                <Enlarge />
-                <Enlarge />
-                <Enlarge />
-                <Enlarge />
+                <Typography variant='h4' sx={{color: '#CA0B4A', mx: 'auto'}}>Enlarge Your Group</Typography>
+                {users.map((user, i) =>
+                    <div key={i}>
+                        <Enlarge id={user._id} />
+                    </div>
+                )}
             </Box>
         </Box>
     )

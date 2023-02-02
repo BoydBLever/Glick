@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
@@ -6,6 +7,7 @@ import { Box } from '@mui/system';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import axios from 'axios';
+import { Button } from '@mui/material';
 // import { styled } from '@mui/material/styles';
 // import Collapse from '@mui/material/Collapse';
 // import Avatar from '@mui/material/Avatar';
@@ -21,6 +23,16 @@ const uplick = require('./upArrow.png');
 const downlick = require('./downArrow.png');
 const PFP = require('./downlick.png');
 
+const buttonSX = {
+    mb: '12px',
+    width: '30%',
+    // mx: 'auto',
+    
+    color: 'white',
+    "&:hover": {
+        bgcolor: '#CA0B4A'
+    }
+}
 
 const PostCard = (props) => {
     const [post, setPost] = useState({});
@@ -28,6 +40,8 @@ const PostCard = (props) => {
     const [profileImg, setProfileImg] = useState('');
     const [up, setUp] = useState(0);
     const [down, setDown] = useState(0);
+    const { email } = useParams();
+    const navigate = useNavigate();
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/posts/${props.id}`)
@@ -37,20 +51,21 @@ const PostCard = (props) => {
                 setDown(res.data.downlicks);
                 return axios.get(`http://localhost:8000/api/getByEmail/${res.data.poster}`)
                     .then(res => {
-                        console.log(res);
+                        // console.log(res);
                         setUser(res.data);
                     })
                     .catch(err => console.error(err));
             })
             .catch(err => console.error(err));
-    }, []);
+    }, [props.id]);
 
     const clickUpLick = () => {
         setUp(up + 1);
         axios.put(`http://localhost:8000/api/${props.id}/updatepost`, {
-            uplicks: {up}
+            'uplicks': up + 1
         })
             .then(res => {
+                console.log(res);
                 setPost(res.data);
             })
             .catch(err => console.error(err));
@@ -59,7 +74,7 @@ const PostCard = (props) => {
     const clickDownLick = () => {
         setDown(down + 1);
         axios.put(`http://localhost:8000/api/${props.id}/updatepost`, {
-            downlicks: {down}
+            downlicks: down + 1
         })
             .then(res => {
                 setPost(res.data);
@@ -67,7 +82,19 @@ const PostCard = (props) => {
             .catch(err => console.error(err));
     }
 
-    const getUserInfo = () => {
+    const deletePost = () => {
+        console.log(props.id);
+
+        if (window.confirm("Are you sure you want to delete this post?")) {
+
+            axios.delete(`http://localhost:8000/api/post/${props.id}`)
+            .then(res => {
+                console.log(res.data);
+                console.log("DB DELETE IS SUCCESSFUL!");
+                window.location.reload(false);
+            })
+            .catch(err => console.log(err))
+        }
     }
 
     return (
@@ -124,11 +151,11 @@ const PostCard = (props) => {
             }}>
                 <CardActions disableSpacing>
                     <IconButton
-                        onClick= {clickUpLick}
+                        onClick={clickUpLick}
                         aria-label="uplick">
                         <Box
                             component="img"
-                            sx= {{
+                            sx={{
                                 height: 50,
                                 width: 70,
                             }}
@@ -138,7 +165,7 @@ const PostCard = (props) => {
                         <Typography>{up}</Typography>
                     </IconButton>
 
-                    <IconButton 
+                    <IconButton
                         onClick={clickDownLick}
                         aria-label="downlick">
                         <Box
@@ -155,19 +182,26 @@ const PostCard = (props) => {
                         <Typography>{down}</Typography>
                     </IconButton>
                 </CardActions>
-                <Box
-                    component="img"
-                    sx={{
-                        height: 50,
-                        width: 50,
-                        ml: 'auto'
-                        // width: 70,
-                        // maxHeight: { xs: 233, md: 167 },
-                        // maxWidth: { xs: 350, md: 250 },
-                    }}
-                    alt="PFP"
-                    src={user?.img}
-                />
+                <Box sx={{
+                    display: 'flex',
+                    justifyContent: 'space-evenly',
+                    alignItems: 'center',
+                }}>
+                <Button sx={{...buttonSX, bgcolor: 'red',}} onClick={deletePost}>Delete</Button>
+                    <Box
+                        component="img"
+                        sx={{
+                            height: 50,
+                            width: 50,
+                            // ml: 'auto'
+                            // width: 70,
+                            // maxHeight: { xs: 233, md: 167 },
+                            // maxWidth: { xs: 350, md: 250 },
+                        }}
+                        alt="PFP"
+                        src={user?.img}
+                    />
+                </Box>
             </Box>
             {/* <ExpandMore
           expand={expanded}

@@ -12,13 +12,14 @@ import Button from '@mui/material/Button';
 import InputBase from '@mui/material/InputBase';
 import MenuItem from '@mui/material/MenuItem';
 import SearchIcon from '@mui/icons-material/Search';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 
 const pages = ['profile', 'messages', 'groupies', 'licks'];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const { email } = useParams();
 
   const navigate = useNavigate();
 
@@ -76,7 +77,7 @@ function ResponsiveAppBar() {
   const goTo = (page) => {
     console.log(page.page);
 
-    navigate(`/${page.page}`);
+    navigate(`/a@dc.com/${page.page}`);
   }
 
   const logo = require('./uplick.png');
@@ -117,7 +118,7 @@ function ResponsiveAppBar() {
             variant="h4"
             noWrap
             component="a"
-            href="/landing"
+            href="/a@dc.com/landing"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },

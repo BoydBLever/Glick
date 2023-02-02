@@ -26,6 +26,12 @@ module.exports = {
         .catch(err => res.status(400).json(err))
     },
 
+    getById: (req, res) => {
+        User.findOne({_id: req.params.id})
+        .then(user => res.json(user))
+        .catch(err => res.status(400).json(err))
+    },
+
     update: (req, res) => {
         User.findOneAndUpdate({email: req.params.email}, req.body)
         .then(updatedUser => res.json(updatedUser))
@@ -82,5 +88,12 @@ module.exports = {
     logout: (req, res) => {
         res.clearCookie('usertoken');
         res.sendStatus(200);
+    },
+
+    delete: (req, res) => {
+        // console.log(req.params.id);
+        User.findByIdAndDelete({_id: req.params.id})
+        .then(result => res.json(result))
+        .catch(err => res.json(err))
     },
 }

@@ -18,7 +18,7 @@ const buttonSX = {
 
 const Profile = () => {
     const [user, setUser] = useState({})
-    const [img, setImg] = useState({});
+    const [img, setImg] = useState({ img: '' });
     const [posts, setPosts] = useState([]);
     const { email } = useParams();
     const navigate = useNavigate();
@@ -75,10 +75,11 @@ const Profile = () => {
                     px: '20px',
                     // bgcolor: ,
                 }}>
-                    <img className="activator" style={{ width: '50%' }} src={user.img} />
-
-                    <img className="activator" style={{ width: '50%' }} src={img.img} />
-
+                    {img.img === '' ?
+                        <img className="activator" style={{ width: '50%' }} src={user.img} />
+                        :
+                        <img className="activator" style={{ width: '50%' }} src={img.img} />
+                    }
 
                     <form style={{ textAlign: 'center' }} onSubmit={onSubmitHandler}>
                         <FileBase64
@@ -102,7 +103,7 @@ const Profile = () => {
                     <Typography variant='h2'>{user.name}</Typography>
                     <Typography variant='h3'>{user.userName}</Typography>
                     <Typography variant='h3'>{user.email}</Typography>
-                    <Typography variant='h3'>Groupies #</Typography>
+                    <Typography variant='h3'>Groupies: 12</Typography>
 
                 </Box>
             </Box>
@@ -119,10 +120,10 @@ const Profile = () => {
             }}>
                 {/* map recent posts */}
                 {posts.map((post, i) =>
-                        <div key={i}>
-                            <PostCard id={post._id} />
-                        </div>
-                    )}
+                    <div key={i}>
+                        <PostCard id={post._id} />
+                    </div>
+                )}
             </Box>
         </>
     )
