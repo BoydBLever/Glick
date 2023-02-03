@@ -74,6 +74,10 @@ function ResponsiveAppBar() {
     setAnchorElNav(null);
   };
 
+  const onLogout = () => {
+    navigate('/login');
+  }
+
   const goTo = (page) => {
     console.log(page.page);
 
@@ -203,7 +207,7 @@ function ResponsiveAppBar() {
           </Search>
 
           <Button
-            onClick={handleCloseNavMenu}
+            onClick={onLogout}
             sx={{ my: 2, color: 'white', display: 'block' }}
           >
             logout
