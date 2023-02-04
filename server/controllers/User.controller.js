@@ -21,21 +21,21 @@ module.exports = {
     },
 
     getByEmail: (req, res) => {
-        User.findOne({email: req.params.email})
-        .then(allUsers => res.json(allUsers))
-        .catch(err => res.status(400).json(err))
+        User.findOne({ email: req.params.email })
+            .then(allUsers => res.json(allUsers))
+            .catch(err => res.status(400).json(err))
     },
 
     getById: (req, res) => {
-        User.findOne({_id: req.params.id})
-        .then(user => res.json(user))
-        .catch(err => res.status(400).json(err))
+        User.findOne({ _id: req.params.id })
+            .then(user => res.json(user))
+            .catch(err => res.status(400).json(err))
     },
 
     update: (req, res) => {
-        User.findOneAndUpdate({email: req.params.email}, req.body)
-        .then(updatedUser => res.json(updatedUser))
-        .catch(err => res.status(400).json(err))
+        User.findOneAndUpdate({ email: req.params.email }, req.body)
+            .then(updatedUser => res.json(updatedUser))
+            .catch(err => res.status(400).json(err))
     },
 
     register: (req, res) => {
@@ -50,6 +50,9 @@ module.exports = {
                         httpOnly: true
                     })
                     .json({ msg: "success!", user: user });
+                // res.cookie("mycookie", "mydata", { httpOnly: true }).json({
+                //     message: "This response has a cookie"
+                // });
             })
             .catch(err => res.json(err));
     },
@@ -92,8 +95,8 @@ module.exports = {
 
     delete: (req, res) => {
         // console.log(req.params.id);
-        User.findByIdAndDelete({_id: req.params.id})
-        .then(result => res.json(result))
-        .catch(err => res.json(err))
+        User.findByIdAndDelete({ _id: req.params.id })
+            .then(result => res.json(result))
+            .catch(err => res.json(err))
     },
 }
