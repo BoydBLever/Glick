@@ -133,7 +133,7 @@ function ResponsiveAppBar() {
               textDecoration: 'none',
             }}
           >
-            GroupieLicks
+            Glick
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
