@@ -2,7 +2,7 @@
   "dependencies": {
     "jsonwebtoken": "^9.0.0"
   },
-  "name": "groupielicks",
+  "name": "glick",
   "version": "1.0.0",
   "main": "index.js",
   "devDependencies": {},
@@ -11,14 +11,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/BoydBLever/GroupieLicks.git"
+    "url": "git+https://github.com/BoydBLever/Glick.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/BoydBLever/GroupieLicks/issues"
+    "url": "https://github.com/BoydBLever/Glick/issues"
   },
-  "homepage": "https://github.com/BoydBLever/GroupieLicks#readme",
+  "homepage": "https://github.com/BoydBLever/Glick#readme",
   "description": ""
 }
+
