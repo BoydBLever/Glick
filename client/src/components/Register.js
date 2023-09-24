@@ -112,7 +112,7 @@ const Register = () => {
                         onChange={onChangeHandler}
                         name="name"
                         type="text"
-                        placeholder="Alexis DeCicco"
+                        placeholder="Boyd Lever"
                     />
                 </FormControl>
                 <FormControl sx={{ width: '40%', minWidth: '100px', mx: 'auto' }}>
@@ -126,7 +126,7 @@ const Register = () => {
                         onChange={onChangeHandler}
                         name="userName"
                         type="text"
-                        placeholder="AlexisDeCoy"
+                        placeholder="BoydLever"
                     />
                 </FormControl>
             </Box>
