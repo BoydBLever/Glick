@@ -29,6 +29,9 @@ const Enlarge = (props) => {
             .then(res => {
                 console.log(res)
                 setUser(res.data)
+                console.log("User image path:", res.data.img);
+                console.log("Returned user data:", res.data);
+
             })
             .catch(err => console.error(err));
     }, [props.id]);

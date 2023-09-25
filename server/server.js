@@ -18,4 +18,4 @@ require('dotenv').config();
 
 const myFirstSecret = process.env.SECRET_KEY;
 
-app.listen(port, () => console.log(`✅ My First Secret: ${myFirstSecret}, Listening on port: ${port}`) );
+app.listen(port, () => console.log(`✅ ${myFirstSecret}, Listening on port: ${port}`) );
