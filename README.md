@@ -62,12 +62,26 @@ To interact with this local database, use the **MongoDB Compass GUI**. Download 
 
 Last but not leaset, connect to a local MongoDB instance with a database named `groupie_licks_db` on the default MongoDB port on `localhost`. The connection string as determined by the mongoose configuration in `mongoose.config.js` is `mongodb://localhost/groupie_licks_db`.
 
-## Screenshots
+## Screenshots:
 
-1. **Login**
-2. **Signup**
-3. **User Profile**
-4. **Cook-Up-A-Post**
-5. **Landing**
-6. **Profile Posts**
-7. **MongoDB Compass Users**
+### 1. Login:
+![Login](Screenshots/Login.png)
+
+### 2. Signup:
+![Signup](Screenshots/Signup.png)
+
+### 3. User-Profile:
+![User Profile](Screenshots/User-Profile.png)
+
+### 4. Cook-Up-A-Post:
+![Cook Up A Post](Screenshots/Cook-Up-A-Post.png)
+
+### 5. Landing:
+![Landing](Screenshots/Landing.png)
+
+### 6. Profile-Posts:
+![Profile Posts](Screenshots/Profile-Posts.png)
+
+### 7. MongoDB-Compass-Users:
+![MongoDB Compass Users](Screenshots/MongoDB-Compass-Users.png)
+
