@@ -5,7 +5,7 @@
 ### Clone the Glick app, and navigate to the directory.
    Split the terminal in two. Change to the `client` folder in the left-hand terminal, and change to `server` in the right-hand terminal.
 
-### Install dependencies in both terminals:
+***Install dependencies in both terminals:***
 ```
 npm install
 ```
