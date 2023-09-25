@@ -3,7 +3,7 @@ Previously known as GroupieLicks, Glick is a responsive and secure Facebook insp
 
 ## Setup & Installation
 
-**Clone the Glick app from GitHub and navigate to the directory:**
+**Clone the Glick app from GitHub and navigate to the directory**
 
    First, make sure you have Git installed on your machine. If not, [download and install Git](https://git-scm.com/downloads).
 
