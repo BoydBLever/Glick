@@ -60,7 +60,7 @@ In order to browse collections and documents created by Glick users, you will ne
 
 To interact with this local database, use the **MongoDB Compass GUI**. Download the full version with all features and capabilities [here](https://www.mongodb.com/try/download/compass).
 
-Connect to a local MongoDB instance with a database named `groupie_licks_db` on the default MongoDB port on `localhost`. The connection string as determined by the mongoose configuration in `mongoose.config.js` is `mongodb://localhost/groupie_licks_db`.
+Last but not leaset, connect to a local MongoDB instance with a database named `groupie_licks_db` on the default MongoDB port on `localhost`. The connection string as determined by the mongoose configuration in `mongoose.config.js` is `mongodb://localhost/groupie_licks_db`.
 
 ## Screenshots
 
