@@ -2,8 +2,40 @@
 
 ## Setup & Installation
 
-**Clone the Glick app, and navigate to the directory.**
-   Split the terminal in two. Change to the `client` folder in the left-hand terminal, and change to `server` in the right-hand terminal.
+1. **Clone the Glick app from GitHub and navigate to the directory:**
+
+   First, make sure you have Git installed on your machine. If not, [download and install Git](https://git-scm.com/downloads).
+
+   Now, clone the Glick repository by using the following command in your terminal:
+   
+   ```
+   git clone https://github.com/BoydBLever/Glick.git
+   ```
+
+
+Once the repository has been cloned, navigate to the main directory:
+
+```
+cd Glick
+```
+
+
+Split your terminal into two panes (how you do this depends on your terminal software; for many terminals, right-clicking or using a menu option will give you the option to split the pane). 
+
+In the left-hand pane, navigate to the `client` directory:
+
+```
+cd client
+```
+
+
+In the right-hand pane, navigate to the `server` directory:
+
+```
+cd server
+```
+
+You're now set to operate in both directories simultaneously.
 
 ***Install dependencies in both terminals:***
 ```
