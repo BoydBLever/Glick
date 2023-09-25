@@ -1,4 +1,5 @@
 ## Description
+Previously known as GroupieLicks, Glick is a responsive and secure Facebook inspired social media site built using MongoDB, Express, React and Node.js where users create and delete posts, share photos, and uplick and downlick content.
 
 ## Setup & Installation
 
