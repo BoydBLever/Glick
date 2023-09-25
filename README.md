@@ -53,7 +53,7 @@ npm start
 ```
 
 ### Run the Application
-After executing the start commands, the React development server will start, and Glick will automatically open in [http://localhost:3000/](http://localhost:3000/). For the best user experience, open the app in Google Chrome. Behold the beauty and power of Glick!
+After executing the start commands, the React development server will start, and Glick will automatically open in [http://localhost:3000/](http://localhost:3000/). View the app in Google Chrome. Behold the beauty and power of Glick!
 
 ### Database Mapping
 In order to browse collections and documents created by Glick users, you will need to interact with the storage database. You may also perform important operations like querying and editing.
