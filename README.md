@@ -58,7 +58,7 @@ After executing the start commands, the React development server will start, and
 ### Database Mapping
 In order to browse collections and documents created by Glick users, you will need to interact with the storage database. You may also perform important operations like querying and editing.
 
-To interact with this local database, use the **MongoDB Compass GUI**. It’s lightweight and user-friendly. Download the full version with all features and capabilities [here](https://www.mongodb.com/try/download/compass).
+To interact with this local database, use the **MongoDB Compass GUI**. Download the full version with all features and capabilities [here](https://www.mongodb.com/try/download/compass).
 
 Connect to a local MongoDB instance with a database named `groupie_licks_db` on the default MongoDB port on `localhost`. The connection string as determined by the mongoose configuration in `mongoose.config.js` is `mongodb://localhost/groupie_licks_db`.
 
