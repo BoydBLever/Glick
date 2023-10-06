@@ -50,12 +50,13 @@ const Landing = () => {
         // Everything box
         <Box sx={{
             display: 'flex',
-            alignItems: 'center'
+            alignItems: 'flex-start'
         }}>
             {/* OUTER BOX LEFT */}
             <Box sx={{
                 width: '60%',
-                mx: 'auto'
+                mx: 'auto',
+                mt: 4
             }}>
                 {/* SELECT */}
                 <Box sx={{ minWidth: 120 }}>
@@ -147,10 +148,5 @@ const Landing = () => {
         </Box>
     )
 }
-
-
-
-
-
 
 export default Landing;
