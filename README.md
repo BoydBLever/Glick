@@ -1,9 +1,9 @@
 ## Description
-Previously known as GroupieLicks, Glick is a responsive and secure Facebook inspired social media site built using MongoDB, Express, React and Node.js where users create and delete posts, share photos, and uplick and downlick content.
+Previously known as GroupieLicks, Glick is a responsive and secure Facebook inspired social media site built using MongoDB, Express, React and Node.js where users create and delete posts, share photos, as well as uplick and downlick content. In Glick, user interactions with the web interface lead to updates in the React components, which in turn modify the DOM to reflect these changes, providing a dynamic user experience.
 
 ## Setup & Installation
 
-**Clone the Glick app from GitHub and navigate to the directory:**
+**Clone the Glick app from GitHub and navigate to the directory**
 
    First, make sure you have Git installed on your machine. If not, [download and install Git](https://git-scm.com/downloads).
 
@@ -53,7 +53,7 @@ npm start
 ```
 
 ### Run the Application
-After executing the start commands, the React development server will start, and Glick will automatically open in [http://localhost:3000/](http://localhost:3000/). For the best user experience, open the app in Google Chrome. Behold the beauty and power of Glick!
+After executing the start commands, the React development server will start, and Glick will automatically open in [http://localhost:3000/](http://localhost:3000/). Behold the beauty and power of Glick!
 
 ### Database Mapping
 In order to browse collections and documents created by Glick users, you will need to interact with the storage database. You may also perform important operations like querying and editing.
