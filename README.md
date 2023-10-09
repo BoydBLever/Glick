@@ -1,3 +1,6 @@
+## Inspiration
+Inspired by the fusion of communication and taste, Glick's logo features a playful representation of a tongue. Just as our tongue helps us discern a myriad of flavors, Glick aims to provide a diverse array of content, experiences, and connections for its users. The tongue, often associated with expressions like "getting a taste" or "tongue-in-cheek", symbolizes both curiosity and wit. Drawing parallels with React's ability to rehydrate pages, the tongue also reminds us of its vital role in keeping our mouth hydrated and aiding in speech. Reimagining the ubiquitous 'thumbs up', Glick's tongue logo emphasizes the brand's commitment to originality, offering a fresh 'taste' in the world of digital interactions.
+
 ## Description
 Previously known as GroupieLicks, Glick is a responsive and secure Facebook inspired social media site built using MongoDB, Express, React and Node.js where users create and delete posts, share photos, as well as uplick and downlick content. In Glick, user interactions with the web interface lead to updates in the React components, which in turn modify the DOM to reflect these changes, providing a dynamic user experience.
 
